@@ -15,15 +15,19 @@
   </head>
   <body>
     <div class="container">
-    <h1 class="text-center mt-2 mb-4">MST Careers</h1>
+    <h1 class="text-center mt-2 mb-4">{{company_name}} Careers</h1>
     <img class="img-fluid" id="banner" src="https://70473d2b-14d1-4d7e-a5c7-2723e7bbf60b-00-3nobbo0cy3uu1.kirk.replit.dev/static/banner.jpg" height="320">"
-    <h2 class="text-center mt-2 mb-4">About MST</h2>
+    <h2 class="text-center mt-2 mb-4">About {{company_name}}</h2>
     <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus. Purus in massa tempor nec feugiat nisl. Nunc lobortis mattis aliquam faucibus purus in massa tempor nec. Neque laoreet suspendisse interdum consectetur libero. Nulla facilisi nullam vehicula ipsum a. Suspendisse faucibus interdum posuere lorem ipsum. Nisl vel pretium lectus quam id leo in vitae. Praesent elementum facilisis leo vel fringilla. Sagittis vitae et leo duis ut. Euismod quis viverra nibh cras pulvinar mattis nunc. Et netus et malesuada fames ac turpis egestas integer eget.</p>
     <h2 class="text-center mt-2 mb-4">Job Openings</h2>
-    <p>TODO - Show the Openings here</p>
+    <div>
+      {% for job in jobs %}
+        {% include 'jobitem.html' %}
+      {% endfor %}
+    </div>
     <div class="text-center">
       <button class="btn btn-primary btn-lg">Contact Us</button>
-      <p class="mt-4">Copyright 2024, MST</p>
+      <p class="mt-4">Copyright 2024, {{company_name}}</p>
     </div>
     </div>
   </body>
