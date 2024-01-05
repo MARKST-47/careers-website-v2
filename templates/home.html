@@ -10,15 +10,22 @@
         height: 360px;
         width: 100%;
         object-fit: cover;
+        margin-bottom: 16px;
       }
     </style>
   </head>
   <body>
+    {% include 'nav.html' %}
+    <img class="img-fluid" id="banner" src="https://70473d2b-14d1-4d7e-a5c7-2723e7bbf60b-00-3nobbo0cy3uu1.kirk.replit.dev/static/banner.jpg" height="320">
     <div class="container">
     <h1 class="text-center mt-2 mb-4">{{company_name}} Careers</h1>
-    <img class="img-fluid" id="banner" src="https://70473d2b-14d1-4d7e-a5c7-2723e7bbf60b-00-3nobbo0cy3uu1.kirk.replit.dev/static/banner.jpg" height="320">"
-    <h2 class="text-center mt-2 mb-4">About {{company_name}}</h2>
+      <div class="row" style="margin-bottom: 16px;">
+        <div class="col-md-6">
     <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus. Purus in massa tempor nec feugiat nisl. Nunc lobortis mattis aliquam faucibus purus in massa tempor nec. Neque laoreet suspendisse interdum consectetur libero. Nulla facilisi nullam vehicula ipsum a. Suspendisse faucibus interdum posuere lorem ipsum. Nisl vel pretium lectus quam id leo in vitae. Praesent elementum facilisis leo vel fringilla. Sagittis vitae et leo duis ut. Euismod quis viverra nibh cras pulvinar mattis nunc. Et netus et malesuada fames ac turpis egestas integer eget.</p>
+        </div>
+      <div class="d-none d-md-block col-md-6">
+      <img src="/static/people.jpg" style="height: 320px; border-radius: 4px;">
+      </div>
     <h2 class="text-center mt-2 mb-4">Job Openings</h2>
     <div>
       {% for job in jobs %}
@@ -26,9 +33,10 @@
       {% endfor %}
     </div>
     <div class="text-center">
-      <button class="btn btn-primary btn-lg">Contact Us</button>
+      <a href="mailto:markstephenthomas10@gmail.com?subject=Question%20about%20Job%20Openings&body=My%20name%3A%20%3Cyour%20name%20here%3E%0D%0A%0D%0AMy%20questions%3A%20%3Cquestions%3E" class="btn btn-primary btn-lg">Contact Us</a>
       <p class="mt-4">Copyright 2024, {{company_name}}</p>
     </div>
     </div>
   </body>
+  {% include 'footer.html' %}
 </html>
