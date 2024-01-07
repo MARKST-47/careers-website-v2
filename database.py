@@ -37,3 +37,11 @@ def load_job_from_db(id):
     cursor.execute("SELECT * FROM jobs WHERE id = %s", (id, ))
     job = cursor.fetchone()
   return job
+
+def add_application_to_db(job_id, application):
+  with connection.cursor() as cursor:
+    query = "INSERT INTO applications (job_id, full_name, email, linkedin_url, education, work_experience, resume_url) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+    cursor.execute(query,(job_id, application['full_name'], application['email'], application['linkedin_url'], application['education'], application['work_experience'], application['resume_url']))
+    connection.commit()
+    
+    
