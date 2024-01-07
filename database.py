@@ -1,16 +1,25 @@
-from sqlalchemy import create_engine, text
+import pymysql
 
-db_connection_string = "mysql+pymysql://avnadmin:AVNS_YpbojKNuIGzBgdfn43L@mst-careers-mst-careers.a.aivencloud.com/defaultdb?charset=utf8mb4"
-
-engine = create_engine(
-  db_connection_string,
-  connect_args={
-    "ssl": {
-      "ca": "ssl/ca.pem",
-    }
-  }
+timeout = 10
+connection = pymysql.connect(
+  charset="utf8mb4",
+  connect_timeout=timeout,
+  cursorclass=pymysql.cursors.DictCursor,
+  db="defaultdb",
+  host="mst-careers-mst-careers.a.aivencloud.com",
+  password="AVNS_YpbojKNuIGzBgdfn43L",
+  read_timeout=timeout,
+  port=17333,
+  user="avnadmin",
+  write_timeout=timeout,
 )
 
-with engine.connect() as conn:
-  result = conn.execute(text("SELECT * FROM jobs"))
-  print(result.all())
+try:
+  cursor = connection.cursor()
+  cursor.execute("SELECT * FROM jobs")
+  result_dicts = []
+  for row in cursor.fetchall():
+    result_dicts.append(row)
+  print(result_dicts)
+finally:
+  connection.close()

@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, render_template
+from database import connection
 
 app = Flask(__name__)
 
@@ -28,9 +29,18 @@ JOBS = [
   }
 ]
 
+def load_jobs_from_db():
+  cursor = connection.cursor()
+  cursor.execute("SELECT * FROM jobs")
+  jobs = []
+  for row in cursor.fetchall():
+    jobs.append(row)
+  return jobs
+
 @app.route("/")
 def hello_world():
-  return render_template('home.html', jobs=JOBS, company_name='MST')
+  jobs = load_jobs_from_db()
+  return render_template('home.html', jobs=jobs, company_name='MST')
 
 @app.route("/api/jobs")
 def list_jobs():
