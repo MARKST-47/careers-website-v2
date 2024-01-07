@@ -14,12 +14,16 @@ connection = pymysql.connect(
   write_timeout=timeout,
 )
 
-try:
-  cursor = connection.cursor()
-  cursor.execute("SELECT * FROM jobs")
-  result_dicts = []
-  for row in cursor.fetchall():
-    result_dicts.append(row)
-  print(result_dicts)
-finally:
-  connection.close()
+def load_jobs_from_db():
+  jobs = []
+  try:
+      cursor = connection.cursor()
+      cursor.execute("SELECT * FROM jobs")
+      for row in cursor.fetchall():
+          jobs.append(row)
+  except Exception as e:
+      # Handle the exception (print, log, or raise if    necessary)
+      print(f"Error: {e}")
+  finally:
+    connection.close()
+  return jobs
