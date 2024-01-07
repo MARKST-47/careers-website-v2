@@ -24,6 +24,4 @@ def load_jobs_from_db():
   except Exception as e:
       # Handle the exception (print, log, or raise if    necessary)
       print(f"Error: {e}")
-  finally:
-    connection.close()
   return jobs
