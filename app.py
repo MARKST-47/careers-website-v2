@@ -30,17 +30,20 @@ JOBS = [
 ]
 
 def load_jobs_from_db():
-  cursor = connection.cursor()
-  cursor.execute("SELECT * FROM jobs")
-  jobs = []
-  for row in cursor.fetchall():
-    jobs.append(row)
+  try:
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM jobs")
+    jobs = []
+    for row in cursor.fetchall():
+      jobs.append(row)
+  finally:
+    connection.close()
   return jobs
 
 @app.route("/")
 def hello_world():
-  jobs = load_jobs_from_db()
-  return render_template('home.html', jobs=jobs, company_name='MST')
+  Jobs = load_jobs_from_db()
+  return render_template('home.html', jobs=Jobs, company_name='MST')
 
 @app.route("/api/jobs")
 def list_jobs():
