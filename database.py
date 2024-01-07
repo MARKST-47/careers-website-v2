@@ -17,6 +17,7 @@ connection = pymysql.connect(
 def load_jobs_from_db():
   jobs = []
   try:
+    with connection.cursor() as cursor:
       cursor = connection.cursor()
       cursor.execute("SELECT * FROM jobs")
       for row in cursor.fetchall():
