@@ -30,3 +30,10 @@ def load_jobs_from_db():
     # Handle the exception (print, log, or raise if    necessary)
     print(f"Error: {e}")
   return jobs
+
+
+def load_job_from_db(id):
+  with connection.cursor() as cursor:
+    cursor.execute("SELECT * FROM jobs WHERE id = %s", (id, ))
+    job = cursor.fetchone()
+  return job
